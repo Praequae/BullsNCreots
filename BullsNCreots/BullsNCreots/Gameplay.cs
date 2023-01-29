@@ -26,7 +26,6 @@ namespace BullsNCreots
         List<Tuple<string, int, int>> computerAnalysis = new List<Tuple<string, int, int>>();
         List<string> possibilities = new List<string>();
         string computerNumbers = "0123456789";
-        string bull = "1234";
         string negatives = "";
         string savedNumbers = "";
         private void label1_Click(object sender, EventArgs e)
@@ -210,9 +209,9 @@ namespace BullsNCreots
             computerAnalysis.Add(computerResults);
             return computerResults;
         }
-        private string GuessResult(string guess, string computerNumber)
+        private Tuple<int, int> GuessResult(string guess, string computerNumber)
         {
-            string result = "";
+            
             int bulls = 0;
             int creots = 0;
             foreach(char number in guess)
@@ -231,8 +230,9 @@ namespace BullsNCreots
                     }
                 }
             }
-            result += " " + Convert.ToString(bulls) + " bulls and " + Convert.ToString(creots) + " creots";
-            return result;
+            Tuple<int, int> results = new Tuple<int, int>(bulls, creots);
+            
+            return results;
         }
         private bool CompNumValid(string computerNumber)
         {
@@ -369,7 +369,7 @@ namespace BullsNCreots
                 compNumber = ComputerNumber(numbers);
 
             }
-            CompNumOutLbl.Text = compNumber;
+            
             computerNumber = compNumber;
 
         }
@@ -379,6 +379,7 @@ namespace BullsNCreots
             string playerGuess = GuessTxtbx.Text;
             bool repeats = NoRepeats(playerGuess);
             string valid = ValidEntry(playerGuess);
+            string playerNumber = playerNumberLbl.Text;
             if(!repeats && valid == "")
             {
                 if (playerGuesses.Contains(playerGuess))
@@ -389,53 +390,65 @@ namespace BullsNCreots
                 {
                     PlayerGuessesOutputLbl.Text = "";
                     playerGuesses.Add(playerGuess);
-                    string result = GuessResult(playerGuess, computerNumber);
-                    playerResults.Add(result);
+                    Tuple<int, int> result = GuessResult(playerGuess, computerNumber);
+                    playerResults.Add(playerGuess + " " + Convert.ToString(result.Item1) + " bulls " + Convert.ToString(result.Item2) + " creots");
                     for(int i = 0; i < playerResults.Count; i++)
                     {
-                        PlayerGuessesOutputLbl.Text += playerGuesses[i] + playerResults[i] + "\r\n";
+                        PlayerGuessesOutputLbl.Text += playerResults[i] + "\r\n";
                     }
                     OutputLbl.Text = playerGuess + result;
-                    GuessTxtbx.Clear();
-                    GuessTxtbx.Focus();
-                    await Task.Delay(2000);
-                    OutputLbl.Text = "Computer making guess";
-                    await Task.Delay(500);
-                    OutputLbl.Text += ".";
-                    await Task.Delay(500);
-                    OutputLbl.Text += ".";
-                    await Task.Delay(500);
-                    OutputLbl.Text += ".";
-                    string computerGuess = ComputerGuess();
-                    while(computerGuess == "" || !CompNumValid(computerGuess))
+                    if (result.Item1 == 4)
                     {
-                        computerGuess = ComputerGuess();
+                        guesses++;
+                        NumGuessOutputLbl.Text = Convert.ToString(guesses);
+                        OutputLbl.Text = "You win!";
+                        await Task.Delay(2000);
+                        OutputLbl.Text = "You guessed the computer's number in " + guesses + " guesses";
                     }
-                    OutputLbl.Text = "Computer's Guess is: " + computerGuess;
-                    await Task.Delay(2000);
-                    OutputLbl.Text = "Your turn.";
-                    Tuple<string, int, int> results = ComputerGuessResult(computerGuess, playerGuess);
-                    for(int x = 0; x < computerGuesses.Count; x++)
+                    else
                     {
-                        if (results.Item2 == 1 && results.Item3 == 1)
+                        GuessTxtbx.Clear();
+                        GuessTxtbx.Focus();
+                        await Task.Delay(2000);
+                        OutputLbl.Text = "Computer making guess";
+                        await Task.Delay(500);
+                        OutputLbl.Text += ".";
+                        await Task.Delay(500);
+                        OutputLbl.Text += ".";
+                        await Task.Delay(500);
+                        OutputLbl.Text += ".";
+                        string computerGuess = ComputerGuess();
+                        while (computerGuess == "" || !CompNumValid(computerGuess))
                         {
-                            CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bull and " + results.Item3 + " creot\r\n";
+                            computerGuess = ComputerGuess();
                         }
-                        else if (results.Item2 == 1 && results.Item3 != 1)
+                        OutputLbl.Text = "Computer's Guess is: " + computerGuess;
+                        await Task.Delay(2000);
+                        OutputLbl.Text = "Your turn.";
+                        Tuple<string, int, int> results = ComputerGuessResult(computerGuess, playerNumber);
+                        for (int x = 0; x < computerGuesses.Count; x++)
                         {
-                            CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bull and " + results.Item3 + " creots\r\n";
+                            if (results.Item2 == 1 && results.Item3 == 1)
+                            {
+                                CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bull and " + results.Item3 + " creot\r\n";
+                            }
+                            else if (results.Item2 == 1 && results.Item3 != 1)
+                            {
+                                CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bull and " + results.Item3 + " creots\r\n";
+                            }
+                            else if (results.Item2 != 1 && results.Item3 == 1)
+                            {
+                                CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bulls and " + results.Item3 + " creot\r\n";
+                            }
+                            else
+                            {
+                                CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bulls and " + results.Item3 + " creots\r\n";
+                            }
                         }
-                        else if (results.Item2 != 1 && results.Item3 == 1)
-                        {
-                            CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bulls and " + results.Item3 + " creot\r\n";
-                        }
-                        else
-                        {
-                            CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bulls and " + results.Item3 + " creots\r\n";
-                        }     
+                        guesses++;
+                        NumGuessOutputLbl.Text = Convert.ToString(guesses);
                     }
-                    guesses++;
-                    NumGuessOutputLbl.Text = Convert.ToString(guesses);
+                    
                 }
             }
             else

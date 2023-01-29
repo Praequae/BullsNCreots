@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ap28_\\OneDrive\\Documents\\C# Projects\\C#\\BullsNCreots\\BullsNCreots\\BullsNCreots.csproj": {}
+    "C:\\Users\\ap28_\\OneDrive\\Documents\\GitHubRepos\\BullsNCreots\\BullsNCreots\\BullsNCreots\\BullsNCreots.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ap28_\\OneDrive\\Documents\\C# Projects\\C#\\BullsNCreots\\BullsNCreots\\BullsNCreots.csproj": {
+    "C:\\Users\\ap28_\\OneDrive\\Documents\\GitHubRepos\\BullsNCreots\\BullsNCreots\\BullsNCreots\\BullsNCreots.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ap28_\\OneDrive\\Documents\\C# Projects\\C#\\BullsNCreots\\BullsNCreots\\BullsNCreots.csproj",
+        "projectUniqueName": "C:\\Users\\ap28_\\OneDrive\\Documents\\GitHubRepos\\BullsNCreots\\BullsNCreots\\BullsNCreots\\BullsNCreots.csproj",
         "projectName": "BullsNCreots",
-        "projectPath": "C:\\Users\\ap28_\\OneDrive\\Documents\\C# Projects\\C#\\BullsNCreots\\BullsNCreots\\BullsNCreots.csproj",
+        "projectPath": "C:\\Users\\ap28_\\OneDrive\\Documents\\GitHubRepos\\BullsNCreots\\BullsNCreots\\BullsNCreots\\BullsNCreots.csproj",
         "packagesPath": "C:\\Users\\ap28_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ap28_\\OneDrive\\Documents\\C# Projects\\C#\\BullsNCreots\\BullsNCreots\\obj\\",
+        "outputPath": "C:\\Users\\ap28_\\OneDrive\\Documents\\GitHubRepos\\BullsNCreots\\BullsNCreots\\BullsNCreots\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
