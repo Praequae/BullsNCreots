@@ -39,15 +39,46 @@ namespace BullsNCreots
         }
         private string ComputerGuess()
         {
+            string compNumber = ComputerNumber(numbers);
             string guess = "";
             if(guesses == 0)
             {
-                string compNumber = ComputerNumber(numbers);
                 while (!CompNumValid(compNumber) || computerGuesses.Contains(compNumber))
                 {
                     compNumber = ComputerNumber(numbers);
                 }
                 computerGuesses.Add(compNumber);
+                guess = compNumber;
+            }
+            else if(guesses == 1)
+            {
+                string firstGuess = "";
+                foreach(char number in compNumber)
+                {
+                    for(int i = 0; i < computerGuesses.Count; i++)
+                    {
+                        foreach(char num in computerGuesses[i])
+                        {
+                            if(num == number)
+                            {
+                                firstGuess += number;
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                        }
+                    }
+                }
+               
+                foreach (char num in compNumber)
+                {
+                    if (firstGuess.Contains(num))
+                    {
+                        compNumber = ComputerNumber(numbers);
+                        ComputerGuess();
+                    }
+                }
                 guess = compNumber;
             }
             else if(savedNumbers.Length == 4)
@@ -153,7 +184,7 @@ namespace BullsNCreots
             
             else
             {
-                string compNumber = ComputerNumber(computerNumbers);
+                
                 while (!CompNumValid(compNumber))
                 {
                     compNumber = ComputerNumber(computerNumbers);
@@ -402,6 +433,7 @@ namespace BullsNCreots
                         guesses++;
                         NumGuessOutputLbl.Text = Convert.ToString(guesses);
                         OutputLbl.Text = "You win!";
+                        CompNumOutLbl.Text = computerNumber;
                         await Task.Delay(2000);
                         OutputLbl.Text = "You guessed the computer's number in " + guesses + " guesses";
                     }
