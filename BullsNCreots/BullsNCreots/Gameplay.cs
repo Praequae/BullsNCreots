@@ -369,7 +369,7 @@ namespace BullsNCreots
                 compNumber = ComputerNumber(numbers);
 
             }
-            
+            CompNumOutLbl.Text = "????";
             computerNumber = compNumber;
 
         }
@@ -396,7 +396,7 @@ namespace BullsNCreots
                     {
                         PlayerGuessesOutputLbl.Text += playerResults[i] + "\r\n";
                     }
-                    OutputLbl.Text = playerGuess + result;
+                    OutputLbl.Text = playerGuess + " " + Convert.ToString(result.Item1) + " bulls " + Convert.ToString(result.Item2) + " creots";
                     if (result.Item1 == 4)
                     {
                         guesses++;
