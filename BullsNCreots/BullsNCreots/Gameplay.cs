@@ -479,29 +479,63 @@ namespace BullsNCreots
                         }
                         OutputLbl.Text = "Computer's Guess is: " + computerGuess;
                         await Task.Delay(2000);
-                        OutputLbl.Text = "Your turn.";
                         Tuple<string, int, int> results = ComputerGuessResult(computerGuess, playerNumber);
-                        for (int x = 0; x < computerGuesses.Count; x++)
+                        if(results.Item2 == 4)
                         {
-                            if (results.Item2 == 1 && results.Item3 == 1)
+                            guesses++;
+                            NumGuessOutputLbl.Text = Convert.ToString(guesses);
+                            OutputLbl.Text = "You Lose";
+                            for (int x = 0; x < computerGuesses.Count; x++)
                             {
-                                CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bull and " + results.Item3 + " creot\r\n";
-                            }
-                            else if (results.Item2 == 1 && results.Item3 != 1)
-                            {
-                                CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bull and " + results.Item3 + " creots\r\n";
-                            }
-                            else if (results.Item2 != 1 && results.Item3 == 1)
-                            {
-                                CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bulls and " + results.Item3 + " creot\r\n";
-                            }
-                            else
-                            {
-                                CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bulls and " + results.Item3 + " creots\r\n";
+                                if (results.Item2 == 1 && results.Item3 == 1)
+                                {
+                                    CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bull and " + results.Item3 + " creot\r\n";
+                                }
+                                else if (results.Item2 == 1 && results.Item3 != 1)
+                                {
+                                    CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bull and " + results.Item3 + " creots\r\n";
+                                }
+                                else if (results.Item2 != 1 && results.Item3 == 1)
+                                {
+                                    CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bulls and " + results.Item3 + " creot\r\n";
+                                }
+                                else
+                                {
+                                    CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bulls and " + results.Item3 + " creots\r\n";
+                                }
+                                await Task.Delay(2000);
+                                OutputLbl.Text = "The computer has guessed your number in " + guesses + " guesses.";
+                                await Task.Delay(3000);
+                                //insert play again
                             }
                         }
-                        guesses++;
-                        NumGuessOutputLbl.Text = Convert.ToString(guesses);
+                        else
+                        {
+                            OutputLbl.Text = "Your turn.";
+
+                            for (int x = 0; x < computerGuesses.Count; x++)
+                            {
+                                if (results.Item2 == 1 && results.Item3 == 1)
+                                {
+                                    CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bull and " + results.Item3 + " creot\r\n";
+                                }
+                                else if (results.Item2 == 1 && results.Item3 != 1)
+                                {
+                                    CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bull and " + results.Item3 + " creots\r\n";
+                                }
+                                else if (results.Item2 != 1 && results.Item3 == 1)
+                                {
+                                    CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bulls and " + results.Item3 + " creot\r\n";
+                                }
+                                else
+                                {
+                                    CompGuessesOutputLbl.Text += results.Item1 + " " + results.Item2 + " bulls and " + results.Item3 + " creots\r\n";
+                                }
+                            }
+                            guesses++;
+                            NumGuessOutputLbl.Text = Convert.ToString(guesses);
+                        }
+                        
                     }
                     
                 }
