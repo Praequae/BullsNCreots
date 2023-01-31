@@ -44,7 +44,7 @@ namespace BullsNCreots
             if(guesses == 0)
             {
                 string compNumber = ComputerNumber(numbers);
-                while (!CompNumValid(compNumber) || computerGuesses.Contains(compNumber))
+                while (!CompNumValid(compNumber))
                 {
                     compNumber = ComputerNumber(numbers);
                 }
@@ -53,40 +53,28 @@ namespace BullsNCreots
             }
             else if(guesses == 1)
             {
-                string compNumber = ComputerNumber(numbers);
-                string firstGuess = "";
-                foreach(char number in compNumber)
+                string firstGuess = computerGuesses[0];
+                string numbers2 = ""; 
+                foreach (char num in firstGuess)
                 {
-                    for(int i = 0; i < computerGuesses.Count; i++)
+                    int index = computerNumbers.IndexOf(num);  
+                    for(int i = 0; i < 11; i++)
                     {
-                        foreach(char num in computerGuesses[i])
+                        if (!firstGuess.Contains(Convert.ToString(i)))
                         {
-                            if(num == number)
-                            {
-                                firstGuess += number;
-                            }
-                            else
-                            {
-                                continue;
-                            }
+                            numbers2 += Convert.ToString(i);
                         }
-                    }
+                    }   
                 }
-               
-                foreach (char num in compNumber)
+                Random rand = new Random();
+                string compNumber = "";
+                for (int i = 0; i < 4; i++)
                 {
-                    if (firstGuess.Contains(num))
-                    {
-                        compNumber = ComputerNumber(numbers);
-                        ComputerGuess();
-                    }
-                    else
-                    {
-                        break;
-                    }
-                    
+                    int index = rand.Next(0, numbers2.Length - 1);
+                    compNumber += numbers2[index];
                 }
                 guess = compNumber;
+                
             }
             else if(savedNumbers.Length == 4)
             {
