@@ -39,10 +39,11 @@ namespace BullsNCreots
         }
         private string ComputerGuess()
         {
-            string compNumber = ComputerNumber(numbers);
+            
             string guess = "";
             if(guesses == 0)
             {
+                string compNumber = ComputerNumber(numbers);
                 while (!CompNumValid(compNumber) || computerGuesses.Contains(compNumber))
                 {
                     compNumber = ComputerNumber(numbers);
@@ -52,6 +53,7 @@ namespace BullsNCreots
             }
             else if(guesses == 1)
             {
+                string compNumber = ComputerNumber(numbers);
                 string firstGuess = "";
                 foreach(char number in compNumber)
                 {
@@ -78,6 +80,11 @@ namespace BullsNCreots
                         compNumber = ComputerNumber(numbers);
                         ComputerGuess();
                     }
+                    else
+                    {
+                        break;
+                    }
+                    
                 }
                 guess = compNumber;
             }
@@ -184,7 +191,8 @@ namespace BullsNCreots
             
             else
             {
-                
+                string compNumber = ComputerNumber(numbers);
+
                 while (!CompNumValid(compNumber))
                 {
                     compNumber = ComputerNumber(computerNumbers);
