@@ -430,12 +430,27 @@ namespace BullsNCreots
                     PlayerGuessesOutputLbl.Text = "";
                     playerGuesses.Add(playerGuess);
                     Tuple<int, int> result = GuessResult(playerGuess, computerNumber);
-                    playerResults.Add(playerGuess + " " + Convert.ToString(result.Item1) + " bulls " + Convert.ToString(result.Item2) + " creots");
+                    if(result.Item1 == 1 && result.Item1 == 1)
+                    {
+                        playerResults.Add(playerGuess + " " + Convert.ToString(result.Item1) + " bull " + Convert.ToString(result.Item2) + " creot");
+                    }
+                    else if(result.Item1 == 1 && result.Item1 != 1)
+                    {
+                        playerResults.Add(playerGuess + " " + Convert.ToString(result.Item1) + " bull " + Convert.ToString(result.Item2) + " creots");
+                    }
+                    else if(result.Item1 != 1 && result.Item2 == 1)
+                    {
+                        playerResults.Add(playerGuess + " " + Convert.ToString(result.Item1) + " bulls " + Convert.ToString(result.Item2) + " creot");
+                    }
+                    else if(result.Item1 != 1 && result.Item2 != 1)
+                    {
+                        playerResults.Add(playerGuess + " " + Convert.ToString(result.Item1) + " bulls " + Convert.ToString(result.Item2) + " creots");
+                    }
                     for(int i = 0; i < playerResults.Count; i++)
                     {
                         PlayerGuessesOutputLbl.Text += playerResults[i] + "\r\n";
                     }
-                    OutputLbl.Text = playerGuess + " " + Convert.ToString(result.Item1) + " bulls " + Convert.ToString(result.Item2) + " creots";
+                    OutputLbl.Text = playerResults[playerResults.Count - 1];
                     if (result.Item1 == 4)
                     {
                         guesses++;
