@@ -51,6 +51,7 @@
             this.showBtn = new System.Windows.Forms.Button();
             this.NumGuessOutputLbl = new System.Windows.Forms.Label();
             this.GuessNumLbl = new System.Windows.Forms.Label();
+            this.PlayAgainBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TitleLbl
@@ -223,7 +224,7 @@
             // 
             this.OutputLbl.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.OutputLbl.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.OutputLbl.Location = new System.Drawing.Point(312, 449);
+            this.OutputLbl.Location = new System.Drawing.Point(312, 461);
             this.OutputLbl.Name = "OutputLbl";
             this.OutputLbl.Size = new System.Drawing.Size(281, 90);
             this.OutputLbl.TabIndex = 18;
@@ -295,6 +296,18 @@
             this.GuessNumLbl.Text = "Number of Guesses";
             this.GuessNumLbl.Visible = false;
             // 
+            // PlayAgainBtn
+            // 
+            this.PlayAgainBtn.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.PlayAgainBtn.Location = new System.Drawing.Point(362, 355);
+            this.PlayAgainBtn.Name = "PlayAgainBtn";
+            this.PlayAgainBtn.Size = new System.Drawing.Size(141, 29);
+            this.PlayAgainBtn.TabIndex = 25;
+            this.PlayAgainBtn.Text = "Play Again";
+            this.PlayAgainBtn.UseVisualStyleBackColor = true;
+            this.PlayAgainBtn.Visible = false;
+            this.PlayAgainBtn.Click += new System.EventHandler(this.PlayAgainBtn_Click);
+            // 
             // GameplayFrm
             // 
             this.AcceptButton = this.GuessSubmitBtn;
@@ -302,6 +315,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(891, 560);
+            this.Controls.Add(this.PlayAgainBtn);
             this.Controls.Add(this.GuessNumLbl);
             this.Controls.Add(this.NumGuessOutputLbl);
             this.Controls.Add(this.showBtn);
@@ -358,5 +372,6 @@
         private Button showBtn;
         private Label NumGuessOutputLbl;
         private Label GuessNumLbl;
+        private Button PlayAgainBtn;
     }
 }

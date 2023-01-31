@@ -373,7 +373,7 @@ namespace BullsNCreots
         private void SubmitBtn_Click(object sender, EventArgs e)
         {
             string result = ValidEntry(InputTextbx.Text);
-            
+
             string compNumber = ComputerNumber(numbers);
            
             if (result == "")
@@ -459,6 +459,13 @@ namespace BullsNCreots
                         CompNumOutLbl.Text = computerNumber;
                         await Task.Delay(2000);
                         OutputLbl.Text = "You guessed the computer's number in " + guesses + " guesses";
+                        await Task.Delay(3000);
+                        OutputLbl.Text = "Play Again?";
+                        OutputLbl.Location = new Point(300, 239);
+                        MakeAGuessLbl.Hide();
+                        GuessTxtbx.Hide();
+                        GuessSubmitBtn.Hide();
+                        PlayAgainBtn.Show();
                     }
                     else
                     {
@@ -506,7 +513,13 @@ namespace BullsNCreots
                                 await Task.Delay(2000);
                                 OutputLbl.Text = "The computer has guessed your number in " + guesses + " guesses.";
                                 await Task.Delay(3000);
-                                //insert play again
+                                OutputLbl.Text = "Play again?";
+                                OutputLbl.Location = new Point(300, 239);
+                                MakeAGuessLbl.Hide();
+                                GuessTxtbx.Hide();
+                                GuessSubmitBtn.Hide();
+                                PlayAgainBtn.Show();
+
                             }
                         }
                         else
@@ -557,6 +570,52 @@ namespace BullsNCreots
         {
             InstructionsFrm info = new InstructionsFrm();
             info.Show();
+        }
+
+        private void PlayAgainBtn_Click(object sender, EventArgs e)
+        {
+            playerGuesses.Clear();
+            computerGuesses.Clear();
+            Valid.Clear();
+            playerResults.Clear();
+            computerResults.Clear();
+            computerAnalysis.Clear();
+            possibilities.Clear();
+            negatives = "";
+            savedNumbers = "";
+            computerNumbers = "0123456789";
+            InputLbl.Show();
+            InputTextbx.Show();
+            PlayerGuessesLbl.Hide();
+            PlayerGuessesOutputLbl.Hide();
+            YourNumLbl.Hide();
+            playerNumberLbl.Hide();
+            CompNumLbl.Hide();
+            CompNumOutLbl.Hide();
+            CompGuessesOutputLbl.Hide();
+            ComputerGuessTitleLbl.Hide();
+            MakeAGuessLbl.Hide();
+            GuessTxtbx.Hide();
+            firstOutputLbl.Show();
+            OutputLbl.Hide();
+            SubmitBtn.Show();
+            GuessSubmitBtn.Hide();
+            NumGuessOutputLbl.Hide();
+            GuessNumLbl.Hide();
+            SubmitBtn.Enabled = true;
+            CompGuessesOutputLbl.Text = "";
+            PlayerGuessesOutputLbl.Text = "";
+            NumGuessOutputLbl.Text = "";
+            playerNumberLbl.Text = "";
+            CompNumOutLbl.Text = "????";
+            guesses = 0;
+            OutputLbl.Location = new Point(312, 461);
+            InputTextbx.Text = "";
+            InputTextbx.Focus();
+            PlayAgainBtn.Hide();
+            GuessTxtbx.Clear();
+
+
         }
     }
 }
