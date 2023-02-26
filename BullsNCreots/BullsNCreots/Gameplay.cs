@@ -114,33 +114,7 @@ namespace BullsNCreots
                 {
                     if (computerAnalysis[j].Item2 > 0 || computerAnalysis[j].Item3 > 0)
                     {
-                        /*int y = 0;
-                        foreach(char number in computerAnalysis[j].Item1) //is this number paired will all negatives?
-                        {
-                            if(negatives.IndexOf(number) == -1)
-                            { 
-                                y++;
-                            } 
-                        }
-                        if (y > 1)
-                        {
-                            ComputerGuess();
-                        }
-                        else if (y == 1)
-                        {
-                            foreach (char number in computerAnalysis[j].Item1) //is this number paired will all negatives?
-                            {
-                                if (negatives.IndexOf(number) == -1)
-                                {
-                                    if (!savedNumbers.Contains(number))
-                                    {
-                                        savedNumbers += number;
-                                    }
-
-                                    ComputerGuess();
-                                }
-                            }
-                        }*/
+                        
                         if (computerAnalysis[j].Item2 + computerAnalysis[j].Item3 == 4)
                         {
                             savedNumbers += computerAnalysis[j].Item1;
