@@ -1,0 +1,72 @@
+// generates a list of possible permutations from the equation P (10,4), then uses subsequent functions
+// (based on computer guesses) to further modify that list.  A new list is initialized after every computer guess.
+
+public class GuessList
+{
+    public List<int> Possible;
+
+    public GuessList()
+    {
+        int n = 10;
+        int r = 4;
+
+        int numerator = Factorial(n);
+        int denominator = Factorial(n - r);
+
+        int permutations = numerator / denominator;
+
+        Possible = new List<int>();
+
+        for (int i = 0; i < permutations; i++)
+        {
+            Possible.Add(i);
+        }
+    }
+
+    private int Factorial(int n)
+    {
+        int result = 1;
+
+        for (int i = 1; i <= n; i++)
+        {
+            result *= i;
+        }
+
+        return result;
+    }
+}
+
+
+//eliminates possible permutations if they contain '$'
+public List<int> GetPossibleAfterFirstGuess()
+{
+      GuessList generator = new GuessList();
+      List<int> Possible = generator.Possible;
+      
+      List<int> PossibleAfterFirstGuess = new List<int>();
+      
+      foreach (int in Possible)
+      {
+          //modify this part to change how the list is pared down
+          if (!int.ToString().Contains('$'))
+          {
+              PossibleAfterFirstGuess.Add(int);
+          }
+      }
+}
+
+//further eliminates possible permutations if they contain '$$'
+public List<int> GetPossibleAfterSecondGuess()
+{
+      List<int> PossibleAfterFirstGuess = generator.PossibleAfterFirstGuess
+      
+      List<int> PossibleAfterSecondGuess = new List<int>();
+      
+      foreach (int in PossibleAfterFirstGuess)
+      {
+          if (!int.ToString().Contains('$$'))
+          {
+              PossibleAfterSecondGuess.Add(int);
+          }
+      }
+}
