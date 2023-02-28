@@ -1,3 +1,49 @@
+public class GuessList
+{
+    public List<int> Possible { get; private set; }
+
+    public GuessList()
+    {
+        Possible = new List<int>();
+
+        for (int i = 1234; i <= 9876; i++)
+        {
+            int num = i;
+            bool[] seen = new bool[10];
+            bool valid = true;
+
+            while (num > 0)
+            {
+                int digit = num % 10;
+                if (seen[digit])
+                {
+                    valid = false;
+                    break;
+                }
+                seen[digit] = true;
+                num /= 10;
+            }
+
+            if (valid)
+            {
+                Possible.Add(i);
+            }
+        }
+    }
+    {
+    
+        foreach (int num in Possible)
+            {
+            Console.WriteLine(num);
+            }
+    }
+}
+
+
+
+
+
+// everything below this was our first try, not using this
 // generates a list of possible permutations from the equation P (10,4), then uses subsequent functions
 // (based on computer guesses) to further modify that list.  A new list is initialized after every computer guess.
 
